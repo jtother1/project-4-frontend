@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import DogApi from "../../DogApi.js";
+import DogApi from "../DogApi.js";
+import PostList from '../components/PostList.js';
+// import Postlist from "../components/PostList.js";
+// import Comments from '../components/Comments.js';
 
 class Home extends Component {
   constructor(props) {
@@ -12,7 +15,7 @@ class Home extends Component {
   getPosts() {
     DogApi.getAllPosts().then((response) => {
       this.setState({ posts: response.data });
-      console.log(response.data);
+      
     });
     // this.setState({
     // });
@@ -22,18 +25,9 @@ class Home extends Component {
     return (
       <div className="home">
         <h1>Ringo and Friends</h1>
-        {Object.keys(this.state.posts).map((postkey, index) => {
-            console.log(postkey)
-            let post = this.state.posts[postkey]
-          return (
-              
-            <div key={post.id+''+index}> 
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-          <div>{post.updated}</div>
-            </div>
-          );
-        })}
+        <PostList />
+    
+        
       </div>
     );
   }
