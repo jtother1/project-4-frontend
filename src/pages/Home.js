@@ -24,7 +24,6 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
-        <h1>Ringo and Friends</h1>
         <PostList />
     
         
