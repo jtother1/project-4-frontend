@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import DogApi from "../DogApi.js";
+import Post from './Post';
 
 class PostList extends Component {
   constructor(props) {
     super(props);
-    this.state = { posts: "" };
+    this.state = { posts: [] };
   }
   componentDidMount() {
     this.getPosts();
@@ -48,7 +49,8 @@ class PostList extends Component {
   render() {
     return (
       <div className="posts">
-        {Object.keys(this.state.posts).map((postkey, index) => {
+        {this.state.posts.map((post) => <Post key={post.id} post={post}/>)}
+        {/* {Object.keys(this.state.posts).map((postkey, index) => {
             
             let post = this.state.posts[postkey]
           return (
@@ -60,8 +62,8 @@ class PostList extends Component {
           
             </div>
           );
-        })}
-        {/* <pre>{JSON.stringify(this.state.posts, null, 2)}</pre> */}
+        })} */}
+        <pre>{JSON.stringify(this.state.posts, null, 2)}</pre>
       </div>
     );
   }
