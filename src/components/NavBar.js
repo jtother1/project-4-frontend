@@ -6,10 +6,11 @@ function NavBar() {
       <Navbar bg="light" variant="light">
         <Navbar.Brand href="/home">Ringo and Friends</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/About">About</Nav.Link>
-          <Nav.Link href="/SignUp">Sign Up</Nav.Link>
-          <Nav.Link href="/Login">Log in</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/signup">Sign Up</Nav.Link>
+          <Nav.Link href="/login">Log in</Nav.Link>
+          <Nav.Link href="/logout">Log Out</Nav.Link>
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
