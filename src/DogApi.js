@@ -15,5 +15,9 @@ export default {
     //query what will be displayed in url
     return dogApi.get(`/comments/`);
   },
+//   getAllUsers() {
+//     //query what will be displayed in url
+//     return dogApi.get(`/users/`);
+//   },
 };
 

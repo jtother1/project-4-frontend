@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DogApi from "../DogApi.js";
-import Post from './Post';
+import Post from "./Post";
 
 class PostList extends Component {
   constructor(props) {
@@ -14,42 +14,44 @@ class PostList extends Component {
   getPosts() {
     DogApi.getAllPosts().then((response) => {
       this.setState({ posts: response.data });
-      
     });
-   
   }
   getComments() {
     DogApi.getAllComments().then((response) => {
-      
-      let commentsByPost = {}
+      let commentsByPost = {};
       Object.keys(response.data).forEach((currentCommentId) => {
-        let currentComment = response.data[currentCommentId]
-        let postId = currentComment.post
-        
-        if (commentsByPost[postId]){
-          commentsByPost[postId].push(currentComment)
-        }else {
-          commentsByPost[postId] = [currentComment]
+        let currentComment = response.data[currentCommentId];
+        let postId = currentComment.post;
+
+        if (commentsByPost[postId]) {
+          commentsByPost[postId].push(currentComment);
+        } else {
+          commentsByPost[postId] = [currentComment];
         }
-      })
+      });
       this.setState({ comments: commentsByPost });
-      console.log(this.state.comments)
-      
+      console.log(this.state.comments);
     });
   }
   displayComments(currentPost) {
-    if (this.state.comments && this.state.comments[currentPost])  {
-      let comments = this.state.comments[currentPost]
+    if (this.state.comments && this.state.comments[currentPost]) {
+      let comments = this.state.comments[currentPost];
       return comments.map((currentComment) => {
-        return <div className="comments" key={currentComment.body}>{currentComment.body}</div>
-    })
+        return (
+          <div className="comments" key={currentComment.body}>
+            {currentComment.body}
+          </div>
+        );
+      });
     }
   }
 
   render() {
     return (
       <div className="posts">
-        {this.state.posts.map((post) => <Post key={post.id} post={post}/>)}
+        {this.state.posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
         {/* {Object.keys(this.state.posts).map((postkey, index) => {
             
             let post = this.state.posts[postkey]
@@ -63,7 +65,6 @@ class PostList extends Component {
             </div>
           );
         })} */}
-        <pre>{JSON.stringify(this.state.posts, null, 2)}</pre>
       </div>
     );
   }

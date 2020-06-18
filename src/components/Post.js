@@ -30,6 +30,7 @@ class Post extends Component {
           />
           <InputGroup.Append>
             <Button variant="primary">Comment</Button>
+            
           </InputGroup.Append>
         </InputGroup>
       </Card>
