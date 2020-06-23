@@ -8,9 +8,19 @@ import {
   Button,
 } from "react-bootstrap";
 class Post extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      comment: "",
+    };
+  }
+  createComment = () => {
+    this.props.postComment({
+      body: this.state.comment,
+      post: this.props.post.id,
+    });
+    this.setState({ comment: "" });
+  };
   render() {
     return (
       <Card className="my-3">
@@ -23,16 +33,20 @@ class Post extends Component {
             return <ListGroupItem key={index}>{comment}</ListGroupItem>;
           })}
         </ListGroup>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="Post a comment"
-            
-          />
-          <InputGroup.Append>
-            <Button variant="primary">Comment</Button>
-            
-          </InputGroup.Append>
-        </InputGroup>
+        {this.props.user && (
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="Post a comment"
+              value={this.state.comment}
+              onChange={(e) => this.setState({ comment: e.target.value })}
+            />
+            <InputGroup.Append>
+              <Button variant="primary" onClick={this.createComment}>
+                Comment
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        )}
       </Card>
     );
   }

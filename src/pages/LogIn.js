@@ -1,19 +1,32 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 
-export default class Login extends Component {
+class Login extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+    submitForm = (event) => {
+        event.preventDefault()
+        this.props.logIn(this.state)
+    }
     render() {
         return (
-            <form>
+            <form onSubmit={this.submitForm}>
+                {this.props.user ? <Redirect to="/" /> : null}
                 <h3>Sign In</h3>
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input onChange={e => this.setState({email:e.target.value})} type="email" className="form-control" placeholder="Enter email" />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input onChange={e => this.setState({password:e.target.value})} type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
                 <div className="form-group">
@@ -31,3 +44,4 @@ export default class Login extends Component {
         );
     }
 }
+export default Login;

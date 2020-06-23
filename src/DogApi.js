@@ -13,18 +13,24 @@ export default {
     //query what will be displayed in url
     return dogApi.get(`/comments/`);
   },
-//   createUser() {
-//     return dogApi.post(`/users/register`, {
-//       name: "",
-//       email: "",
-//       password: "",
-//     });
-//     .then((response) => {
-//         return data;
-//     })
-//   },
-    // getAllUsers() {
-    //   //query what will be displayed in url
-    //   return dogApi.get(`/users/`);
-    // },
+  createUser(user) {
+    return dogApi.post(`/users/register`, user);
+  },
+  setToken(token) {
+    return (dogApi.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${token}`);
+  },
+  checkToken(token) {
+    return dogApi.post(`/api/token/verify/`, { token });
+  },
+  logIn(user) {
+      return dogApi.post(`/api/token/`, user);
+  },
+  postComment(comment) {
+      return dogApi.post(`/comments/`, comment)
+  },
+  createPost(post) {
+      return dogApi.post(`/posts/`, post)
+  }
 };

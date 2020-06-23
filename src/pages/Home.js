@@ -1,35 +1,21 @@
 import React, { Component } from "react";
-import DogApi from "../DogApi.js";
-import PostList from '../components/PostList.js';
-// import Postlist from "../components/PostList.js";
-// import Comments from '../components/Comments.js';
+import Post from "../components/Post";
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { posts: "loading..." };
-  }
-  componentDidMount() {
-    this.getPosts();
-  }
-  getPosts() {
-    DogApi.getAllPosts().then((response) => {
-      this.setState({ posts: response.data });
-      
-    });
-    // this.setState({
-    // });
-  }
-
+class PostList extends Component {
   render() {
     return (
-      <div className="home">
-        <PostList />
-    
-        
+      <div className="posts">
+        {this.props.posts.map((post) => (
+          <Post
+            key={post.id}
+            post={post}
+            postComment={this.props.postComment}
+            user={this.props.user}
+          />
+        ))}
       </div>
     );
   }
 }
 
-export default Home;
+export default PostList;

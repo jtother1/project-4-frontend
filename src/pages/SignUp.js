@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import DogApi from "../DogApi";
+import { Redirect } from 'react-router-dom';
+
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
+      name: "",
       email: "",
       password: "",
       passwordVerify: "",
@@ -15,7 +16,7 @@ class SignUp extends Component {
     this.setState({ email: event.target.value });
   };
   userNameInput = (event) => {
-    this.setState({ userName: event.target.value });
+    this.setState({ name: event.target.value });
   };
   PasswordInput = (event) => {
     this.setState({ password: event.target.value });
@@ -23,20 +24,28 @@ class SignUp extends Component {
   PasswordVerifyInput = (event) => {
     this.setState({ passwordVerify: event.target.value });
   };
-  userAuthentication = (event) => {
-    event.preventDefault(); //also redirect this homepage
-    DogApi.createUser(this.state);
-    console.log("hello");
+  registerUser = (event) => {
+    event.preventDefault(); 
+    this.props.submitSignUp(this.state);
+     
   };
 
   render() {
+    const { user } = this.props;
     return (
-      <form onSubmit={this.userAuthentication}>
+      <form onSubmit={this.registerUser}>
+        {user ? <Redirect to="/" /> : null}
         <h3>Sign Up</h3>
 
         <div className="form-group">
           <label>User Name</label>
-          <input type="userName" className="form-control" placeholder="User Name" value={this.state.userName} onChange={this.userNameInput}/>
+          <input
+            type="userName"
+            className="form-control"
+            placeholder="User Name"
+            value={this.state.userName}
+            onChange={this.userNameInput}
+          />
         </div>
 
         <div className="form-group">
@@ -44,7 +53,9 @@ class SignUp extends Component {
           <input
             type="email"
             className="form-control"
-            placeholder="Enter email" value={this.state.email} onChange={this.emailInput}
+            placeholder="Enter email"
+            value={this.state.email}
+            onChange={this.emailInput}
           />
         </div>
 
@@ -53,7 +64,9 @@ class SignUp extends Component {
           <input
             type="password"
             className="form-control"
-            placeholder="Enter password" value={this.state.password} onChange={this.PasswordInput}
+            placeholder="Enter password"
+            value={this.state.password}
+            onChange={this.PasswordInput}
           />
         </div>
         <div className="form-group">
@@ -61,12 +74,14 @@ class SignUp extends Component {
           <input
             type="password"
             className="form-control"
-            placeholder="Validate Password" value={this.state.passwordVerify} onChange={this.PasswordVerifyInput}
+            placeholder="Validate Password"
+            value={this.state.passwordVerify}
+            onChange={this.PasswordVerifyInput}
           />
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">
-          Sign Up 
+          Sign Up
         </button>
         <p className="forgot-password text-right">
           Already registered <a href="/logIn">log in?</a>
