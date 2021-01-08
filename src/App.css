@@ -16,6 +16,12 @@ a.mr-auto.navbar.nav {
   margin-right: 80px;
   padding-top: 80px;
 }
+div.text-center.card {
+  max-width: 3000px;
+  min-width: 20px;
+  align-content: center;
+  font-size: 50px;
+}
 form {
   padding: 150px;
 }
@@ -42,11 +48,11 @@ img {
   border-radius: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
   background-color: #282c34;
@@ -71,3 +77,18 @@ img {
     transform: rotate(360deg);
   }
 }
+
+/* // Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap */
+
+/* // Small devices (landscape phones, 576px and up) */
+/* @media (min-width: 576px) {max-width: 812px;}
+
+
+@media (min-width: 768px) { }
+
+
+@media (min-width: 992px) { }
+
+
+@media (min-width: 1200px) { } */
